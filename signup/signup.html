@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+</head>
+
+
+<style>
+    *{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+ body{
+    background-color: rgb(248, 247, 247);
+ }
+form{
+    width: 40%;
+    background-color: rgb(53, 206, 191);
+    margin: 20px auto;
+    padding: 2%;
+}
+input{
+    display: block;
+    font-size:25px;
+    width: 80%;
+    margin: auto;
+    padding: 1% 10px;
+    margin-top: 10px;
+}
+p{
+    text-align: center;
+    margin-top: 20px;
+}
+span{
+    color: skyblue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+</style>
+        
+
+        
+<body>     
+   
+
+    
+
+    <form>
+        <h1>Create a new Account</h1>
+        <input id="phonenumber" type="text" placeholder="Phone Number">
+        <input type="email" placeholder="Email" name="" id="email">
+        <input type="password" placeholder="Password" name="" id="password">
+        <input type="submit" value="Create Account">
+        <p>Already have a account? <a href="./login.html"> Signin </a></p>
+    </form>
+</body>
+
+<script>
+  let form=document.querySelector("form");
+  let LSData=JSON.parse(localStorage.getItem("userData"));
+  form.addEventListener("submit",function(event) {
+      event.preventDefault();
+      const data={
+       phonenumber:form.phonenumber.value,
+       email: form.email.value,
+       password:form.password.value,
+      }
+      if(LSData != null && LSData.email === data.email){
+          alert("Account already exist. Please Login");
+          return;
+      }
+
+      localStorage.setItem("userData",JSON.stringify(data));
+      alert("Signup successful. Please Signin")
+      window.location.href="mens.html"
+  })
+
+</script>
+</html>
